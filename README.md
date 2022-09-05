@@ -1,5 +1,5 @@
-# 440-Group-N-Fall-2022
-Repository for CS 440 Group N for Fall 2022
+# 440-Group-24-Fall-2022
+Repository for CS 440 Group 24 for Fall 2022
 
 Note:  The presentation evaluation form and rubric are provided here for reference
        and planning purposes.  Hard copies will be handed out in class on 
