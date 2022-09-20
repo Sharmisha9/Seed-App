@@ -9,3 +9,10 @@ Note:  The presentation evaluation form and rubric are provided here for referen
        Similarly the Group Project Member Evaluation Rubric is provided here for 
        reference only.  A form will be provided periodically during the term 
        for completion by all group members.
+
+
+## Seed-app
+to start:
+       npm start
+
+
