@@ -68,3 +68,68 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+## Seed-app
+to start app:
+       npm start
+
+
+## Clean File Structure Example  (will be deleted)
+## Folder Structure example with Social App
+### assets
+ it is a collection of the (public) resource directories such as images, svg, company's logo,  etc..
+       - This resource can be shared across the entire app.
+
+### commons
+
+
+
+### pages
+it is a collection of directories that contains each page folder. 
+       - sign-up, sign-in, main, settings, account-manager etc.. 
+ * each page will have 
+ directories:
+
+       - components
+              * sub component directories
+              - comments
+              - likes
+              - etc.. 
+
+       - hooks (hooks for the components)
+              * sub directories
+              - use-get-comments
+              - use-get-likes
+              - use-create-commnet
+
+ files: 
+       - models.js
+       - style.css
+       - utils.js
+
+
+### setup
+it is a collection of directories that needed for setting up the app.
+       - context-manager (api manager), auth (for data authentification), routes-manager (manages multiple routes in the app). 
+
+
+### store
+it is a collection of directories for Python Redux, for example.
+       - action
+       - reducers
+
+
+
+
+
+
+
+
+
+
