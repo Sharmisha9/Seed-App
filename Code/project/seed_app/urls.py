@@ -2,7 +2,9 @@ from django.urls import path
 from . import views
 
 
+
+app_name = 'seed_app'
+
 urlpatterns = [
-    path('login/', views.loginMethod),
-    path('register/', views.registerMethod)
+    path('', views.home, name="homepage")
 ]
