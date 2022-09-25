@@ -7,12 +7,12 @@
 (Mac Users)
 
 1. install pip3
-2. start virtual env in Project level, optional
-    - python3 -m venv venv
+2. setup virtual env in Project level, optional
+    - 'python3 -m venv venv' at Project level
 3. activate virtual env, 
-    - source venv/bin/activate or venv/bin/activate
+    - 'source venv/bin/activate' or 'venv/bin/activate'  at Project level
 4. run the app.
-    - python3 manage.py runserver
+    - 'python3 manage.py runserver'
 
 
 # Site Functionality
