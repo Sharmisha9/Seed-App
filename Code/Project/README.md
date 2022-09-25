@@ -5,6 +5,7 @@
 ## To start to test this project, we need some prepartions.
 
 (Mac Users)
+
 1. install pip3
 2. start virtual env in Project level, optional
     - python3 -m venv venv
@@ -25,9 +26,10 @@
 #  DB admin
 
 ## admin
-* create super user account
-    - python3 manage.py createsuperuser
-    if err, 
+
+    * create super user account.
+    - python3 manage.py createsuperuser.
+    if err,
     - python3 manage.py migrate for clear migrate to app. 
 
     after done registering Models in admin.py, we could
