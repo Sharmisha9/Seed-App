@@ -16,11 +16,11 @@
         <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">SEED PROJECT</a></h5>
        
         <nav class="my-2 my-md-0 mr-md-3">
-          <a class="p-2 text-dark" href="#">ABOUT</a>
+          <a class="p-2 text-dark" href="/about">ABOUT</a>
           {% if user.is_authenticated %}
-          <a class="p-2 text-dark" href="#">BASIC SEARCH</a>
-          <a class="p-2 text-dark" href="#">ADVANCED SEARCH</a>
-          <a class="p-2 text-dark" href="#">MORE</a>
+          <a class="p-2 text-dark" href="/basic">BASIC SEARCH</a>
+          <a class="p-2 text-dark" href="/advanced">ADVANCED SEARCH</a>
+          <a class="p-2 text-dark" href="/more">MORE</a>
           {% endif %}
         </nav>
         <a class="btn btn-outline-primary" href= "{{ to|default:"/login" }}">{{ do|default:"LOGIN" }}</a>
@@ -59,9 +59,9 @@
                 <li><a class="text-muted" href="#">Final resource</a></li>
               </ul>
             </div>
-            /
+            
             <div class="col-6 col-md">
-              <h5>About</h5>
+              <h5>About Project</h5>
               <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="#">Team</a></li>
                 <li><a class="text-muted" href="#">Locations</a></li>
