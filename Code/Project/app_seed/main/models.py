@@ -8,7 +8,7 @@ class Users(models.Model):
     phone = models.CharField(max_length=15)
 
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s %s %s" % (self.first_name, self.last_name, self.phone)
 
 
 class Address(models.Model):
@@ -20,7 +20,9 @@ class Address(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.zip
+        return "%s %s %s %s" % (self.street, self.city, self.state, self.zip)
 
     class Meta:
         ordering = ['zip']
+
+

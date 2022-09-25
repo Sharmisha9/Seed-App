@@ -4,7 +4,8 @@
 
 ## To start to test this project, we need some prepartions.
 
-1. install pip
+(Mac Users)
+1. install pip3
 2. start virtual env in Project level, optional
     - python3 -m venv venv
 3. activate virtual env, 
