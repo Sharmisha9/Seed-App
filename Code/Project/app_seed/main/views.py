@@ -8,9 +8,9 @@ from django.http import HttpResponse
 def index(res):
 
     if res.user.is_authenticated:
-        return render(res, 'main/index.html', {"title": "Home",'page':'CS440 HOME' ,"to": '/logout', "do": "LOGOUT"})
+        return render(res, 'main/index.html', {"title": "Home",'page':'Seed' ,"to": '/logout', "do": "LOGOUT"})
     else:
-        return render(res, 'main/index.html', {"title": "Home", 'page':'CS440 HOME' ,"to": "/login", "do": "LOGIN"})
+        return render(res, 'main/index.html', {"title": "Home", 'page':'Seed' ,"to": "/login", "do": "LOGIN"})
 
 def about(res):
     if res.user.is_authenticated:
@@ -18,10 +18,14 @@ def about(res):
     else:
         return render(res, 'main/about.html', {"title": "About", 'page':'CS440 ABOUT' ,"to": "/login", "do": "LOGIN"})
 
+
+
+
 ## if user is authenticated, then allow to visit, if not, redirect to login
 
 def basic(res):
     return HttpResponse("BASIC")
+
 
 def advanced(res):
     return HttpResponse("ADVANCED")
