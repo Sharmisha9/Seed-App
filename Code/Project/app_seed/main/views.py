@@ -24,15 +24,23 @@ def about(res):
 ## if user is authenticated, then allow to visit, if not, redirect to login
 
 def basic(res):
-    return HttpResponse("BASIC")
-
+    if res.user.is_authenticated:
+        return render(res, 'main/basic.html', {"title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT"})
+    else:
+        return render(res, 'main/basic.html', {"title": "Basic Search",'page':'Basic Search' ,"to": '/login', "do": "LOGIN"})
 
 def advanced(res):
-    return HttpResponse("ADVANCED")
+    if res.user.is_authenticated:
+        return render(res, 'main/advanced.html', {"title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT"})
+    else:
+        return render(res, 'main/advanced.html', {"title": "Advance Search",'page':'Advance Search' ,"to": '/login', "do": "LOGIN"})
 
 
 def more(res):
-    return HttpResponse("MORE")
+    if res.user.is_authenticated:
+        return render(res, 'main/more.html', {"title": "More",'page':'More About' ,"to": '/logout', "do": "LOGOUT"})
+    else:
+        return render(res, 'main/more.html', {"title": "More",'page':'More About' ,"to": '/login', "do": "LOGIN"})
 
 
 
