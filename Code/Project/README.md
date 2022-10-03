@@ -26,6 +26,8 @@
 
 #  DB admin
 
+/upload/ is only used for admin, it is not listed on Nav bar. If a client try to access, it redirect warning page.
+
 ## admin
 
     * create super user account.
