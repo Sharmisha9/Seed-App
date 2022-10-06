@@ -1,13 +1,25 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 
+class Soil(models.Model):
+    soil_type = models.CharField(max_length=100)
+
+    def _str_(self):
+        return "%s" % (self.type)
+
+class Season(models.Model):
+    season = models.CharField(max_length=100)
+    def _str_(self):
+        return "%s" % (self.season)
 
 
-
-
-
-
-
+class Crop(models.Model):
+    name = models.CharField(max_length=100)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
+    soil = models.ForeignKey(Soil, on_delete=models.CASCADE)
+    def _str_(self):
+        return "%s %s %s" % (self.name, self.season, self.soil)
 
 
 

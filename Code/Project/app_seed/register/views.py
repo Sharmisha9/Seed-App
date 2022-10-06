@@ -21,7 +21,9 @@ def upload(res):
             form = File(res.POST, res.FILES)
 
             if form.is_valid(): 
-                print("Handle file HERE using Funtion")
+                print("Handle file HERE using a Funtion")
+
+
                 return redirect('/')
             # return render(res, 'fileUpload/fileupload.html', {'form': form, 'page':'REGISTER', 'title': 'Register','to':'/login', 'do': 'LOGIN'})
         else:
@@ -29,12 +31,3 @@ def upload(res):
             return render(res, 'fileUpload/fileupload.html', {'form':form, 'page':'UPLOAD', 'title': 'File upload','to':'/logout', 'do': 'LOGOUT'})
     else:
         return render(res, 'error/access_limit.html', {'page':'Access Error', 'title': 'Access Error','to':'/login', 'do': 'LOGIN'})
-
-    # if res.method == 'POST':
-    #     form = File(res.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #     return redirect('/' )
-    # else:
-    #     form = File()
-    #     return render(res, 'fileUpload/fileupload.html', {'form': form, 'page':'UPLOAD', 'title': 'Upload','to':'/login', 'do': 'LOGIN'})

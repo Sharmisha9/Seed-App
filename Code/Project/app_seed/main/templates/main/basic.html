@@ -1,13 +1,18 @@
 
 {% extends 'main/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
-<section class="card-deck mb-3 text-center">
-    {% if user.is_authenticated %}
-    <div class="card mb-4 shadow-sm">
-        <h3>User authenticated</h3>
+<section class=" ">
+    <div class="text-center">
+        <h2>Soil Type and Season</h2>
+        <p>This Basic Search application provides crop based on the soil type and season</p>
     </div>
+    {% if user.is_authenticated %}
+    <form class="form-group" method="POST" action="#"> {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class="btn btn-success" name="submit">Submit</button>
+    </form>
     {% else %}
     <h3>404 NOT AUTHORIZED</h3>
     {% endif %}

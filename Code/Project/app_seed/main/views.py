@@ -1,7 +1,7 @@
 from curses.ascii import HT
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-# from .form import MyForm
+from .form import BasicForm
 
 
 # Create your views here.
@@ -21,14 +21,24 @@ def about(res):
 
 
 
-## if user is authenticated, then allow to visit, if not, redirect to login
+## Basic SEARCH if user is authenticated, then allow to visit, if not, redirect to login
 
 def basic(res):
+    
     if res.user.is_authenticated:
-        return render(res, 'main/basic.html', {"title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT"})
+        if res.method == "POST":
+            form = BasicForm(res.POST)
+
+            ## Compare the input from Database, and recommend output.
+
+            return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT"})
+        else:
+            form = BasicForm()
+            return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT"})
     else:
         return render(res, 'main/basic.html', {"title": "Basic Search",'page':'Basic Search' ,"to": '/login', "do": "LOGIN"})
 
+## Advanced Search
 def advanced(res):
     if res.user.is_authenticated:
         return render(res, 'main/advanced.html', {"title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT"})
@@ -36,6 +46,7 @@ def advanced(res):
         return render(res, 'main/advanced.html', {"title": "Advance Search",'page':'Advance Search' ,"to": '/login', "do": "LOGIN"})
 
 
+## More 
 def more(res):
     if res.user.is_authenticated:
         return render(res, 'main/more.html', {"title": "More",'page':'More About' ,"to": '/logout', "do": "LOGOUT"})
