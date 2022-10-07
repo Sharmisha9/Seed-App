@@ -19,13 +19,17 @@ def upload(res):
     if res.user.is_superuser:
         if res.method == 'POST':
             form = File(res.POST, res.FILES)
+            print("BEFORE VALIDATION: ", res)
 
             if form.is_valid(): 
                 print("Handle file HERE using a Funtion")
 
 
+
+
                 return redirect('/')
-            # return render(res, 'fileUpload/fileupload.html', {'form': form, 'page':'REGISTER', 'title': 'Register','to':'/login', 'do': 'LOGIN'})
+            return redirect('/')
+            # return render(res, 'fileUpload/fileupload.html', {'form':form, 'page':'UPLOAD', 'title': 'File upload','to':'/logout', 'do': 'LOGOUT'})
         else:
             form = File()
             return render(res, 'fileUpload/fileupload.html', {'form':form, 'page':'UPLOAD', 'title': 'File upload','to':'/logout', 'do': 'LOGOUT'})

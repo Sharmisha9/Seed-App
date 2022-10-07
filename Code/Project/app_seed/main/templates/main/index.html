@@ -1,21 +1,20 @@
 
 {% extends 'main/base.html' %}
-
+{% load static %}
 
 {% block content %}
 
 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-
+      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false" src="{% static 'images/daytime.jpg' %}" alt="">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
+      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false" src="{% static 'images/walk.jpg' %}" alt="">
 
     </div>
     <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">Third slide</text></svg>
+      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false" src="{% static 'images/evening.jpg' %}" alt="">
 
     </div>
   </div>
@@ -31,36 +30,41 @@
 
 <br>
 
-
 <section class="card-deck mb-3 text-center">
+
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Free</h4>
+        <h4 class="my-0 font-weight-normal">Application Overview</h4>
       </div>
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>10 users included</li>
-          <li>2 GB of storage</li>
-          <li>Email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+        <p>
+          “Seed” is a software application that collects data from the earth’s surface and generates botanic
+decisions that will help people to expand and maintain their plants within limited resources. The
+sensors are used to collect extensive data such as humidity, temperature, nitrogen, and other
+image data from above and below the earth’s surface. The main goal of the application is to
+prevent desertification and help farmers to grow their agriculture. However, as agile
+development, the application is not limited to adding more features and functionalities such as
+predicting and suggesting the right plants for the climate based on the data analysis.
+        </p>
       </div>
     </div>
+
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Pro</h4>
+        <h4 class="my-0 font-weight-normal">Application Environment</h4>
       </div>
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+        <p>
+          On successful login, the user will be taken to the tutorial page if it is their first login, briefly
+describing how to use the application. The application then gives a form with a drop-down menu
+and a submit button. From this drop-down menu the user needs to select the type of soil desired
+for farming and tap the search button to get crop recommendations for the same. On the form
+page, the user also gets an advanced search option, which will enlarge other options if tapped.
+The advanced search will consider additional parameters including temperature, humidity, and
+nitrogen levels, as per the data generated by the sensors which are placed in the soil near the
+plants and generate better and tailored recommendations according to the current soil conditions.
+
+        </p>
       </div>
     </div>
 
