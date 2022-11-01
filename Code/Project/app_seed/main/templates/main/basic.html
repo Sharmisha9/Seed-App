@@ -15,7 +15,12 @@
     </form>
 
     <div class="container">
-        <h3 class="center text-center">Result</h3>
+        <h3 class="center text-center">
+            {% for field_value in field_values%}
+            {{field_value}}
+            <br>
+            {% endfor %}
+        </h3>
     </div>
 
     {% else %}

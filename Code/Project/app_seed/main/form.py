@@ -1,37 +1,36 @@
 from django import forms
+import csv
 
+mySoilTypeDict = dict()
+with open("Soil.csv", "r") as file:
+    reader = csv.reader(file)
+    print(reader)
+    for row in reader:
+         mySoilTypeDict[row[0]] = row[1]
+
+mySeasonTypeDict = dict()
+with open("Season.csv", "r") as file:
+    reader = csv.reader(file)
+    print(reader)
+    for row in reader:
+         mySeasonTypeDict[row[0]] = row[1]
+         
 ## for user input form for Basic Search
-SOIL_CONTENT = (
-    ('hcsl', "Heavy lcay and silt loam"),
-    ('sl', "Sandy loam"),
-    ('ls', "Loam soils"),
-    ('wdls', "Well drained loamy soil"),
-    ('bcs',"Black cotton soils"),
-    ('dss', "Dry sandy soil"),
-    ('sls', "Sandy loam soils"),
-    ('shcs', "Sandy to heavy cotton soils"),
-    ('dsl', "Deep, sandy laoms"),
-    ('dls', "Deep loamy soils"),
-    ('avs', "Alluvial and volcanic soils"),
-    ('lslrc', "Light sandy loams to red clay"),
-    ('gas', "Grey alluvial soils"),
-    ('fvrd', "Fetile volcanic red earch"),
-)
+SOIL_CONTENT = tuple((k, v) for k, v in mySoilTypeDict.items())
 
-SEASON_CONTENT=(
-    ('spring', "Spring"),
-    ('summer', "Summer"),
-    ('fall', "Fall"),
-    ('winter', "Winter"),
-)
+SEASON_CONTENT = tuple((k, v) for k, v in mySeasonTypeDict.items())
+
 class BasicForm(forms.Form):
     soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices=SOIL_CONTENT))
-    season = forms.CharField(label="Choose a seaon", widget = forms.Select(choices=SEASON_CONTENT))
-
-
-
-
-
+    season = forms.CharField(label="Choose a season", widget = forms.Select(choices=SEASON_CONTENT))
+    
+class AdvanceForm(forms.Form):
+    soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices=SOIL_CONTENT))
+    season = forms.CharField(label="Choose a season", widget = forms.Select(choices=SEASON_CONTENT))
+    temperature = forms.FloatField(label="Sensor temperature value", widget = forms.TextInput)
+    humidity = forms.FloatField(label="Sensor humidity value", widget = forms.TextInput)
+    pH = forms.FloatField(label="Sensor pH value", widget = forms.TextInput)
+        
 # class MyForm(forms.Form):
 #     first_name = forms.CharField(label="First Name", max_length=30)
 #     last_name = forms.CharField(label="Last Name", max_length=30)
