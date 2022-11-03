@@ -16,10 +16,13 @@
 
     <div class="container">
         <h3 class="center text-center">
-            {% for field_value in field_values%}
-            {{field_value}}
+            {% for x,y in webData.items %}
+            {{x}} : {{y}}
+            <br>
             <br>
             {% endfor %}
+            <br>
+            
         </h3>
     </div>
 

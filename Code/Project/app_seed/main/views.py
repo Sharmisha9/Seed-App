@@ -2,7 +2,7 @@ from curses.ascii import HT
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .form import BasicForm, AdvanceForm
-from .models import Crop, CropAdv
+from .models import Crop, CropAdv, CropDesc
 
 # Create your views here.
 def index(res):
@@ -30,16 +30,25 @@ def basic(res):
             
             user_soil_id = form['soil'].value()
             user_season_id = form['season'].value()
-    
-            field_name = 'name'
+            
+            webData = dict()
+                
             objs = Crop.objects.filter(season_id = user_season_id, soil_id = user_soil_id)
-            field_object = Crop._meta.get_field(field_name)
-            field_values = list()
-            
+            crop_field_object = Crop._meta.get_field('name')
+            crop_field_values = list()
+
             for obj in objs:
-               field_values.append(field_object.value_from_object(obj))
+               crop_field_values.append(crop_field_object.value_from_object(obj))
             
-            return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT", "field_values": field_values})
+            crop_desc_list = list()
+            for cropName in crop_field_values:
+              descObj = CropDesc.objects.get(name = cropName)
+              desc_field_object = CropDesc._meta.get_field('desc')
+              desc_text = desc_field_object.value_from_object(descObj)
+              crop_desc_list.append(desc_text)
+              webData[cropName] = desc_text
+            print(webData[cropName])
+            return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData": webData})
         else:
             form = BasicForm()
             return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT"})
@@ -60,15 +69,24 @@ def advanced(res):
             
             print(sensorTemp, sensorHumidity, sensorpH)
             
-            field_name = 'name'
+            webData = dict()
+            
             objs = CropAdv.objects.filter(season_id = user_season_id, soil_id = user_soil_id, min_temp__lte = sensorTemp,  max_temp__gte = sensorTemp, min_humidity__lte = sensorHumidity,  max_humidity__gte = sensorHumidity, min_pH__lte = sensorpH,  max_pH__gte = sensorpH)            
-            field_object = CropAdv._meta.get_field(field_name)
-            field_values = list()
+            field_object = CropAdv._meta.get_field('name')
+            crop_field_values = list()
             
             for obj in objs:
-               field_values.append(field_object.value_from_object(obj))
+               crop_field_values.append(field_object.value_from_object(obj))
             
-            return render(res, 'main/advanced.html', {"form": advForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": field_values})
+            crop_desc_list = list()
+            for cropName in crop_field_values:
+              descObj = CropDesc.objects.get(name = cropName)
+              desc_field_object = CropDesc._meta.get_field('desc')
+              desc_text = desc_field_object.value_from_object(descObj)
+              crop_desc_list.append(desc_text)
+              webData[cropName] = desc_text
+            
+            return render(res, 'main/advanced.html', {"form": advForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
         else:
             advForm = AdvanceForm()
             return render(res, 'main/advanced.html', {"form": advForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT"})

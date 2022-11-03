@@ -34,8 +34,12 @@ class CropAdv(models.Model):
     def _str_(self):
         return "%s %s %s %f %f %f %f %f %f" % (self.name, self.season, self.soil, self.max_temp, self.min_temp, self.max_humidity, self.min_humidity, self.max_pH, self.min_pH)
 
+class CropDesc(models.Model):
+    name = models.CharField(max_length=100)
+    desc = models.TextField()
 
-
+    def _str_(self):
+        return "%s %s" % (self.name, self.desc)
 
 # class Users(models.Model):
 #     username = models.CharField(max_length=100)
