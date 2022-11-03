@@ -31,8 +31,6 @@ class AdvanceForm(forms.Form):
     humidity = forms.FloatField(label="Sensor humidity value", widget = forms.TextInput)
     pH = forms.FloatField(label="Sensor pH value", widget = forms.TextInput)
         
-# class MyForm(forms.Form):
-#     first_name = forms.CharField(label="First Name", max_length=30)
-#     last_name = forms.CharField(label="Last Name", max_length=30)
-#     email = forms.EmailField(label="Email", max_length=100, required=False)
-#     phone = forms.CharField(label="Phone")
+class ImageForm(forms.Form):
+    name = forms.CharField(label="Testing char Name", max_length=30)
+    last_name = forms.ImageField()
