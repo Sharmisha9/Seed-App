@@ -5,11 +5,16 @@ from pickle import load
 from os import listdir
 
 default_image_size = tuple((256, 256))
-directory_root = 'C:/UIC EDUCATION/CS440 SE/Coding Project/SEED/440-Group-24-Fall-2022/Code/Project/app_seed/main/ML'
+directory_root = './main/ML'
 
 from keras.models import model_from_json
 
-label_list = ['Pepper__bell___Bacterial_spot', 'Pepper__bell___healthy', 'PlantVillage', 'Potato___Early_blight', 'Potato___healthy', 'Potato___Late_blight', 'Tomato_Bacterial_spot', 'Tomato_Early_blight', 'Tomato_healthy', 'Tomato_Late_blight', 'Tomato_Leaf_Mold', 'Tomato_Septoria_leaf_spot', 'Tomato_Spider_mites_Two_spotted_spider_mite', 'Tomato__Target_Spot', 'Tomato__Tomato_mosaic_virus', 'Tomato__Tomato_YellowLeaf__Curl_Virus']
+labelFile = open(f'{directory_root}/label_transform.pkl', 'rb')
+unpickledLabel = load(labelFile)
+labelFile.close()
+
+label_list = unpickledLabel.classes_
+
 jsonFile = open(f'{directory_root}/seedmodel.json', 'r')
 loaded_model_json = jsonFile.read()
 jsonFile.close()
@@ -28,8 +33,8 @@ def convert_image_to_array(image_path):
     except Exception as e:
         print(f"Error : {e}")
         return None
-
-image_list = [convert_image_to_array(f'{directory_root}/TestImage4.JPG')]
+testImg = 'healthy_potato.JPG'
+image_list = [convert_image_to_array(f'{directory_root}/{testImg}')]
 image_list = np.array(image_list, dtype=np.float16) / 225.0
 
 labelFile = open(f'{directory_root}/label_transform.pkl', 'rb')
