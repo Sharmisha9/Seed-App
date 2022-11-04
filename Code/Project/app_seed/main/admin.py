@@ -1,10 +1,10 @@
 # Register your models here. (showing admin db.)
 from django.contrib import admin
-from . import models
+from .models import Crop, Soil,Season
 
-
-# admin.site.register(models.Users)
-# admin.site.register(models.Address)
+admin.site.register(Crop)
+admin.site.register(Soil)
+admin.site.register(Season)
 
 
 

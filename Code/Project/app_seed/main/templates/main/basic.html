@@ -9,13 +9,24 @@
         <p>This Basic Search application provides crop based on the soil type and season</p>
     </div>
     {% if user.is_authenticated %}
+    <!-- user's basic input form -->
     <form class="form-group" method="POST" action="#"> {% csrf_token %}
         {{ form|crispy}}
         <button type="submit" class="btn btn-success" name="submit">Submit</button>
     </form>
 
+    <!-- Result of the user input -->
+    <!-- Here we display image, name, and some description -->
     <div class="container">
-        <h3 class="center text-center">Result</h3>
+        <h3 class="center text-center">
+            {% for name, description in webData.items %}
+            {{name}} : {{description}}
+            <br>
+            <br>
+            {% endfor %}
+            <br>
+            
+        </h3>
     </div>
 
     {% else %}
