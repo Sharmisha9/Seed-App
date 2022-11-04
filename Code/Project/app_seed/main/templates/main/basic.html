@@ -19,8 +19,8 @@
     <!-- Here we display image, name, and some description -->
     <div class="container">
         <h3 class="center text-center">
-            {% for x, y in webData.items %}
-            {{x}} : {{y}}
+            {% for name, description in webData.items %}
+            {{name}} : {{description}}
             <br>
             <br>
             {% endfor %}

@@ -57,8 +57,6 @@ def basic(res):
                 print("BEFORE PRINTING RESULTS")
 
             # here we manage user output.
-            print("RESULTS: ")
-            print(webData[cropName])
 
             return render(res, 'main/basic.html', {"form": form, "title": "Basic Search",'page':'Basic Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData": webData})
         else:
@@ -84,23 +82,24 @@ def advanced(res):
                 sensorpH = advForm['pH'].value()
                 
                 print(sensorTemp, sensorHumidity, sensorpH)
-                
                 webData = dict()
-                
+
                 objs = CropAdv.objects.filter(season_id = user_season_id, soil_id = user_soil_id, min_temp__lte = sensorTemp,  max_temp__gte = sensorTemp, min_humidity__lte = sensorHumidity,  max_humidity__gte = sensorHumidity, min_pH__lte = sensorpH,  max_pH__gte = sensorpH)            
                 field_object = CropAdv._meta.get_field('name')
                 crop_field_values = list()
-                
+
                 for obj in objs:
                     crop_field_values.append(field_object.value_from_object(obj))
                 
-                crop_desc_list = list()
                 for cropName in crop_field_values:
                     descObj = CropDesc.objects.get(name = cropName)
                     desc_field_object = CropDesc._meta.get_field('desc')
                     desc_text = desc_field_object.value_from_object(descObj)
+
+                crop_desc_list = list()
                 crop_desc_list.append(desc_text)
                 webData[cropName] = desc_text
+                
                 # render if <It is POST>
                 return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
             
@@ -108,6 +107,7 @@ def advanced(res):
             elif "submit_image" in res.POST:
                 imageForm = ImageForm(res.POST)
                 advForm = AdvanceForm(res.POST)
+
 
                 print("IMAGE FORM SUBMITED")
                 return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
