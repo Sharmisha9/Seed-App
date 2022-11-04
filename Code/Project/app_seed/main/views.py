@@ -69,7 +69,7 @@ def basic(res):
 def advanced(res):
     if res.user.is_authenticated:
         if res.method == "POST":
-            if "submit" in res.POST:
+            if "submit_form" in res.POST:
                 advForm = AdvanceForm(res.POST)
                 imageForm = ImageForm(res.POST)
                 
@@ -94,9 +94,12 @@ def advanced(res):
                 for cropName in crop_field_values:
                     descObj = CropDesc.objects.get(name = cropName)
                     desc_field_object = CropDesc._meta.get_field('desc')
+
+                    print("IN SECOND LOOP ABOVE ERR")
                     desc_text = desc_field_object.value_from_object(descObj)
 
                 crop_desc_list = list()
+                print("TRY ME: ")
                 crop_desc_list.append(desc_text)
                 webData[cropName] = desc_text
                 
