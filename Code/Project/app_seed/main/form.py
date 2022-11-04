@@ -32,5 +32,6 @@ class AdvanceForm(forms.Form):
     pH = forms.FloatField(label="Sensor pH value", widget = forms.TextInput)
         
 class ImageForm(forms.Form):
-    name = forms.CharField(label="Testing char Name", max_length=30)
+    # x = forms.
+    # name = forms.CharField(label="Testing char Name", max_length=30)
     last_name = forms.ImageField()

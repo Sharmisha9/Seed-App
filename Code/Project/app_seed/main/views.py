@@ -67,11 +67,15 @@ def basic(res):
 
 ## Advanced Search
 def advanced(res):
+    
     if res.user.is_authenticated:
         if res.method == "POST":
+            imageForm = ImageForm(res.POST)
+            advForm = AdvanceForm(res.POST)
+
             if "submit_form" in res.POST:
                 advForm = AdvanceForm(res.POST)
-                imageForm = ImageForm(res.POST)
+                imageForm = ImageForm()
                 
                 # Retrieve values of Advanced Form
 
@@ -80,6 +84,8 @@ def advanced(res):
                 sensorTemp = advForm['temperature'].value()
                 sensorHumidity = advForm['humidity'].value()
                 sensorpH = advForm['pH'].value()
+
+                advForm = AdvanceForm()
                 
                 print(sensorTemp, sensorHumidity, sensorpH)
                 webData = dict()
@@ -98,21 +104,26 @@ def advanced(res):
                     print("IN SECOND LOOP ABOVE ERR")
                     desc_text = desc_field_object.value_from_object(descObj)
 
-                crop_desc_list = list()
-                print("TRY ME: ")
-                crop_desc_list.append(desc_text)
-                webData[cropName] = desc_text
+                    crop_desc_list = list()
+                    print("TRY ME: ")
+                    crop_desc_list.append(desc_text)
+                    webData[cropName] = desc_text
                 
                 # render if <It is POST>
                 return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
             
             # if the form is IMAGE FORM
-            elif "submit_image" in res.POST:
+            if "submit_image" in res.POST:
                 imageForm = ImageForm(res.POST)
-                advForm = AdvanceForm(res.POST)
+                print("IMAGE HANDLING STARTED.")
 
 
-                print("IMAGE FORM SUBMITED")
+
+
+                advForm = AdvanceForm()
+                crop_field_values = list()
+                webData = dict()
+                imageForm = ImageForm()
                 return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
             
         else:

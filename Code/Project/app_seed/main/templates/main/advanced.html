@@ -10,14 +10,16 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <form class="form-group border-end" method="POST" action="#"> {% csrf_token %}
+                <form class="form-group border-end" method="POST" action="#"> 
+                    {% csrf_token %}
                     {{ formA |crispy}}
                     <button type="submit" class="btn btn-success" name="submit_form">Submit</button>
                 </form>
             </div>
 
             <div class="col-sm">
-                <form class="form-group border-start" method="POST" action="#"> {% csrf_token %}
+                <form class="form-group border-start" method="POST" action="#"> 
+                    {% csrf_token %}
                     {{ formB |crispy}}
                     <button type="submit" class="btn btn-success" name="submit_image">Submit</button>
                 </form>
