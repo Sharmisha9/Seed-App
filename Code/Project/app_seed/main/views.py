@@ -4,6 +4,13 @@ from django.http import HttpResponse
 from .form import BasicForm, AdvanceForm, ImageForm
 from .models import Crop, CropAdv, CropDesc
 
+
+from base64 import b64encode
+
+
+
+
+
 # Create your views here.
 def index(res):
     if res.user.is_authenticated:
@@ -117,14 +124,17 @@ def advanced(res):
                 imageForm = ImageForm(res.POST)
                 print("IMAGE HANDLING STARTED.")
 
+                
 
 
+                image = ()
 
                 advForm = AdvanceForm()
                 crop_field_values = list()
                 webData = dict()
                 imageForm = ImageForm()
-                return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
+
+                return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData, "test":image})
             
         else:
             # render GET

@@ -41,6 +41,13 @@ class CropDesc(models.Model):
     def _str_(self):
         return "%s %s" % (self.name, self.desc)
 
+
+
+
+
+
+
+
 # class Users(models.Model):
 #     username = models.CharField(max_length=100)
 #     email = models.EmailField(blank=True, null=True)

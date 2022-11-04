@@ -1,6 +1,9 @@
 from django import forms
 import csv
 
+
+
+
 mySoilTypeDict = dict()
 with open("Soil.csv", "r") as file:
     reader = csv.reader(file)
@@ -31,7 +34,8 @@ class AdvanceForm(forms.Form):
     humidity = forms.FloatField(label="Sensor humidity value", widget = forms.TextInput)
     pH = forms.FloatField(label="Sensor pH value", widget = forms.TextInput)
         
+
+
 class ImageForm(forms.Form):
-    # x = forms.
-    # name = forms.CharField(label="Testing char Name", max_length=30)
-    last_name = forms.ImageField()
+    Plant_Image = forms.ImageField()
+

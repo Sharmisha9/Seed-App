@@ -22,7 +22,7 @@
     
             {% for x, y in webData.items %}
             <p class="border-bottom">
-             <tr class="border border-info">
+             <tr class="border border-warning">
                 <th><h1 class="m-2 text-success text-uppercase">{{x}}</h1></th>
                 {% static "" as baseImg %}
                 <td><img class="shadow p-3 mb-5 bg-white rounded-circle" src=" {{baseImg}}plant_images/{{x}}.jpg" width=”280″></td>
@@ -34,22 +34,6 @@
 
     </div>
 
-
-
-    <!-- Result of the user input -->
-    <!-- Here we display image, name, and some description -->
-
-    <!-- <div class="container">
-        <h3 class="center text-center">
-            {% for x, y in webData.items %}
-            {{x}} : {{y}}
-            <br>
-
-            <br>
-            {% endfor %}
-            <br>
-        </h3>
-    </div> -->
 
     {% else %}
     <h3>404 NOT AUTHORIZED</h3>

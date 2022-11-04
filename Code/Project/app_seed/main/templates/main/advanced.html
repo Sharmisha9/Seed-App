@@ -10,22 +10,28 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <form class="form-group border-end" method="POST" action="#"> 
+                <form class="form-group border-end shadow p-3 mb-5 bg-light rounded" method="POST" action="#"> 
                     {% csrf_token %}
                     {{ formA |crispy}}
                     <button type="submit" class="btn btn-success" name="submit_form">Submit</button>
                 </form>
             </div>
 
-            <div class="col-sm">
-                <form class="form-group border-start" method="POST" action="#"> 
+            <div class="col-sm rounded bg-warning mb-5 pt-3 shadow-lg p-3 mb-5 bg-warning rounded">
+                <h1>Plant Docter</h1>
+                <p>UPLOAD an image to diagnose</p>
+                <form class="form-group" method="POST" action="#"> 
                     {% csrf_token %}
                     {{ formB |crispy}}
                     <button type="submit" class="btn btn-success" name="submit_image">Submit</button>
                 </form>
+                <div class="container">
+                    {{test}}
+                </div>
             </div>
         </div>
     </div>
+
 
     <div class="container">
         <h3 class="center text-center">
