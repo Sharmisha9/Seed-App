@@ -5,9 +5,6 @@ from .form import BasicForm, AdvanceForm, ImageForm
 from .models import Crop, CropAdv, CropDesc
 
 
-from base64 import b64encode
-
-
 
 
 
@@ -103,18 +100,17 @@ def advanced(res):
 
                 for obj in objs:
                     crop_field_values.append(field_object.value_from_object(obj))
-                
+
+                crop_desc_list = list()
                 for cropName in crop_field_values:
                     descObj = CropDesc.objects.get(name = cropName)
                     desc_field_object = CropDesc._meta.get_field('desc')
-
-                    print("IN SECOND LOOP ABOVE ERR")
                     desc_text = desc_field_object.value_from_object(descObj)
 
-                    crop_desc_list = list()
-                    print("TRY ME: ")
                     crop_desc_list.append(desc_text)
                     webData[cropName] = desc_text
+                    print("Name:::: ")
+                    print(cropName)
                 
                 # render if <It is POST>
                 return render(res, 'main/advanced.html', {"formA": advForm, "formB": imageForm, "title": "Advance Search",'page':'Advance Search' ,"to": '/logout', "do": "LOGOUT", "field_values": crop_field_values, "webData" : webData})
@@ -123,10 +119,7 @@ def advanced(res):
             if "submit_image" in res.POST:
                 imageForm = ImageForm(res.POST)
                 print("IMAGE HANDLING STARTED.")
-
                 
-
-
                 image = ()
 
                 advForm = AdvanceForm()
@@ -147,13 +140,15 @@ def advanced(res):
 
 ## More 
 def more(res):
+    import numpy as np
+    from pickle import load
+    from os import listdir
+
+    import cv2
+    print(cv2.__version__)
+    from keras.utils import img_to_array
+
     if res.user.is_authenticated:
-         
-        import numpy as np
-        import cv2
-        from keras.utils import img_to_array
-        from pickle import load
-        from os import listdir
 
         default_image_size = tuple((256, 256))
         directory_root = './main/ML'

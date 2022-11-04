@@ -11,24 +11,25 @@
     </div>
     {% if user.is_authenticated %}
     <!-- user's basic input form -->
-    <form class="form-group" method="POST" action="#"> {% csrf_token %}
-        {{ form|crispy}}
-        <button type="submit" class="btn btn-success" name="submit">Submit</button>
-    </form>
+    <div class="container d-flex justify-content-center">
+        <form class="form-group w-50 border border-white shadow p-3 mb-5 bg-white text-center" method="POST" action="#"> {% csrf_token %}
+            {{ form|crispy}}
+            <button type="submit" class="btn btn-success" name="submit">Submit</button>
+        </form>
+    </div>
 
 
     <div class="container">
         <table class="">
-    
             {% for x, y in webData.items %}
-            <p class="border-bottom">
-             <tr class="border border-warning">
+            
+             <tr class="border border-white shadow p-3 mb-5 bg-white">
                 <th><h1 class="m-2 text-success text-uppercase">{{x}}</h1></th>
                 {% static "" as baseImg %}
                 <td><img class="shadow p-3 mb-5 bg-white rounded-circle" src=" {{baseImg}}plant_images/{{x}}.jpg" width=”280″></td>
                 <td class ="p-4 fw-light text-justify">{{y}}</td>
              </tr> 
-             </p>
+            
             {% endfor %}
          </table>
 
