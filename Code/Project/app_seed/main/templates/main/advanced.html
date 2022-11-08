@@ -8,19 +8,51 @@
 <section class="card-deck mb-3 text-center">
     {% if user.is_authenticated %}
     
-
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <form class="form-group border-end shadow p-3 mb-5 bg-light rounded" method="POST" action="#"> 
+                <form class="border-end shadow p-3 mb-5 bg-light rounded" method="POST" action="#"> 
                     {% csrf_token %}
-                    {{ formA |crispy}}
+
+                    <div class="form-group">
+                        <!-- col-md-6 will be min max -->
+                        {{ formA.season |as_crispy_field}}
+                        {{ formA.soil |as_crispy_field}}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_temp |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_temp |as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_humidity |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_humidity |as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_pH |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_pH |as_crispy_field}}
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-success" name="submit_form">Submit</button>
                 </form>
             </div>
 
             <div class="col-sm rounded bg-warning mb-5 pt-3 shadow-lg p-3 mb-5 bg-warning rounded">
-                <h1>Plant Docter</h1>
+                <h1>Plant Doctor</h1>
                 <p>UPLOAD an image to diagnose</p>
                 <form class="form-group" method="POST" action="#"> 
                     {% csrf_token %}

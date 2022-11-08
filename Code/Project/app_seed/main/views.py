@@ -3,9 +3,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .form import BasicForm, AdvanceForm, ImageForm
 from .models import Crop, CropAdv, CropDesc
+from django.views.generic import CreateView
 
-
-
+# class Form_View(CreateView):
+#     model = CropAdv
+#     fields = ('name', 'season', 'soil', 'max_temp', 'min_temp', 'max_humidity', 'min_humidity', 'max_pH', 'min_pH')
+#     template_name = 'advanced.html'
+#     success_url = '/advanced/'
 
 
 # Create your views here.
@@ -85,7 +89,11 @@ def advanced(res):
 
                 user_soil_id = advForm['soil'].value()
                 user_season_id = advForm['season'].value()
+
+                # ERROR : TEMP, HUMIDITY, PH should be min & max values.
+                
                 sensorTemp = advForm['temperature'].value()
+
                 sensorHumidity = advForm['humidity'].value()
                 sensorpH = advForm['pH'].value()
 
