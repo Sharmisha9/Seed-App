@@ -22,8 +22,14 @@ with open("Season.csv", "r") as file:
          
 ## for user input form for Basic Search
 SOIL_CONTENT = tuple((k, v) for k, v in mySoilTypeDict.items())
-
 SEASON_CONTENT = tuple((k, v) for k, v in mySeasonTypeDict.items())
+
+for c in SEASON_CONTENT:
+    print(c);
+
+MYCONST = list(SEASON_CONTENT);
+
+# EASON_CONTENT = list((k, v) for k, v in mySeasonTypeDict.items())
 
 class BasicForm(forms.Form):
     soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices=SOIL_CONTENT))
@@ -34,35 +40,25 @@ class AdvanceForm(ModelForm):
         model = CropAdv
         fields = ('name', 'season', 'soil', 'max_temp', 'min_temp', 'max_humidity', 'min_humidity', 'max_pH', 'min_pH',)
         
-        # widgets = {
-        name = forms.CharField(label="Name")
-        soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices=SOIL_CONTENT))
-        season = forms.CharField(label="Choose a season", widget = forms.Select(choices=SEASON_CONTENT))
+    # widgets = {
+    name = forms.CharField(label="Name")
+    soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices= SOIL_CONTENT))
+    season = forms.CharField(label="Choose a season", widget = forms.Select(choices=SEASON_CONTENT))
 
-        temp_min = forms.FloatField()
-        temp_max = forms.FloatField()
-        humidity_min = forms.FloatField()
-        humidity_max = forms.FloatField()
-        ph_min = forms.FloatField()
-        ph_max = forms.FloatField()
-
-        # fields = ('season',)
+    temp_min = forms.FloatField()
+    temp_max = forms.FloatField()
+    humidity_min = forms.FloatField()
+    humidity_max = forms.FloatField()
+    ph_min = forms.FloatField()
+    ph_max = forms.FloatField()
 
 
-
-    # soil = forms.CharField(label="Choose a Soil type", widget = forms.Select(choices=SOIL_CONTENT))
-    # season = forms.CharField(label="Choose a season", widget = forms.Select(choices=SEASON_CONTENT))
-    # # temperature = forms.FloatField(label="Sensor temperature value", widget = forms.TextInput)
-    # # humidity = forms.FloatField(label="Sensor humidity value", widget = forms.TextInput)
-    # # pH = forms.FloatField(label="Sensor pH value", widget = forms.TextInput)
-        
-
-    # temp_min = forms.FloatField(label="Minimum Temperature");
-    # temp_max = forms.FloatField(label="Maximum Temperature");
-    # humidity_min = forms.FloatField(label="Minimum Humidity");
-    # humidity_max = forms.FloatField(label="Maximum Humidity");
-    # ph_min = forms.FloatField(label="Minimum pH");
-    # ph_max = forms.FloatField(label="Maximum pH");
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({"class": "form-control"})
+        # or iterate over field to add class for each field
+        # for field in self.fields:
+        #     self.fields[field].widget.attrs.update({'class':"form-control"})
 
 class ImageForm(forms.Form):
     Plant_Image = forms.ImageField()
