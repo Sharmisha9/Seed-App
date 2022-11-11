@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success" name="submit_form">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg d-grid gap-2 col-6 mx-auto mt-4" name="submit_form">Submit</button>
                 </form>
             </div>
 
@@ -57,26 +57,16 @@
                 <form class="form-group" method="POST" action="#"> 
                     {% csrf_token %}
                     {{ formB |crispy}}
-                    <button type="submit" class="btn btn-success" name="submit_image">Submit</button>
+                    <button type="submit" class="btn btn-success btn-lg d-grid gap-2 col-6 mx-auto mt-4" name="submit_image">Submit</button>
                 </form>
-                <div class="container">
+                
+                <div class="border border-danger border-bottom-0 border-left-0 border-right-0 rounded bg-light p-1">
+                    <p>FILE TESTING OUTPUT && Description</p>
                     {{test}}
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!-- <div class="container">
-        <h3 class="center text-center">
-            {% for x,y in webData.items %}
-            {{x}} : {{y}}
-            <br>
-            <br>
-            {% endfor %}
-            <br>
-        </h3>
-    </div> -->
 
 
     <div class="container">
@@ -86,7 +76,7 @@
              <tr class="border border-white shadow p-3 mb-5 bg-white">
                 <th><h1 class="m-2 text-success text-uppercase">{{x}}</h1></th>
                 {% static "" as baseImg %}
-                <td><img class="shadow p-3 mb-5 bg-white rounded-circle" src=" {{baseImg}}plant_images/{{x}}.jpg" width=”280″></td>
+                <td><img class="shadow p-3 mb-5 bg-white rounded-circle" src=" {{baseImg}}plant_images/{{x}}.jpg" width=”280″ alt=""IMAGE></td>
                 <td class ="p-4 fw-light text-justify">{{y}}</td>
              </tr> 
             
