@@ -1,0 +1,104 @@
+
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+
+<section class="card-deck mb-3 text-center">
+    {% if user.is_authenticated %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <form class="border-end shadow p-3 mb-5 bg-light rounded" method="POST" action="#"> 
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <!-- col-md-6 will be min max -->
+                        {{ formA.season |as_crispy_field}}
+                        {{ formA.soil |as_crispy_field}}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_temp |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_temp |as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_humidity |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_humidity |as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ formA.min_pH |as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{ formA.max_pH |as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg d-grid gap-2 col-6 mx-auto mt-4" name="submit_form">Submit</button>
+                </form>
+            </div>
+
+            <div class="col-sm rounded bg-warning mb-5 pt-3 shadow-lg p-3 mb-5 bg-warning rounded">
+                <h1>Plant Doctor</h1>
+                <p>UPLOAD an image to diagnose</p>
+                <form class="form-group" method="POST" enctype = "multipart/form-data" action="#"> 
+                    {% csrf_token %}
+                    {{ formB |crispy}}
+                    <button type="submit" class="btn btn-success btn-lg d-grid gap-2 col-6 mx-auto mt-4" name="submit_image">Submit</button>
+                </form>
+                
+                <div class="border border-danger border-bottom-0 border-left-0 border-right-0 rounded bg-light p-1">
+                    <p>FILE TESTING OUTPUT && Description</p>
+                    <br>
+                    <br>
+                    <img src = "{{imgFormDisplay.image.url}} alt="">
+                    <br>
+                    <br>
+                    <b>{{plantResultName}}</b>  
+                    <br>
+                    {% if imageFormDisplay %}
+                    Score: {{plantScore}} %
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <table class="">
+            {% for x, y in webData.items %}
+            
+             <tr class="border border-white shadow p-3 mb-5 bg-white">
+                <th><h1 class="m-2 text-success text-uppercase">{{x}}</h1></th>
+                {% static "" as baseImg %}
+                <td><img class="shadow p-3 mb-5 bg-white rounded-circle" src=" {{baseImg}}plant_images/{{x}}.jpg" width=”280″ alt=""IMAGE></td>
+                <td class ="p-4 fw-light text-justify">{{y}}</td>
+             </tr> 
+            
+            {% endfor %}
+         </table>
+
+    </div>
+
+
+    
+    {% else %}
+    <h3>404 NOT AUTHORIZED</h3>
+    {% endif %}
+  </section>
+
+  {% endblock content %}

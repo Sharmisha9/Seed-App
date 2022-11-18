@@ -1,0 +1,27 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% for instance in queryset %}
+        {{instance.soil_season}},
+        {{instance.temp}},
+        {{instance.humidity}},
+        {{instance.ph}},
+    {% endfor %}
+
+
+
+{% endblock content %}
+
+
+
+    <!-- <div class="row">
+                            <div class="col-6">
+                              {{ form.name|as_crispy_field }}
+                            </div>
+                            <div class="col-6">
+                              {{ form.price|as_crispy_field }}
+                            </div>
+                          </div> -->
