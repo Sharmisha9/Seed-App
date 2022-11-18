@@ -66,6 +66,18 @@ def basic(res):
     else:
         return render(res, 'main/basic.html', {"title": "Basic Search",'page':'Basic Search' ,"to": '/login', "do": "LOGIN"})
 
+# ## Advanced Search
+# def advanced(res):
+    
+#     if res.user.is_authenticated:
+#         if res.method == "POST":
+#             imageForm = ImageForm(res.POST)
+#             advForm = AdvanceForm(res.POST)
+
+#             if "submit_form" in res.POST:
+#                 advForm = AdvanceForm(res.POST)
+#                 imageForm = ImageForm()
+
 ## Advanced Search
 def advanced(res):
     if res.user.is_authenticated:
